@@ -60,7 +60,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hitung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hitung.Designer.cs">
+      <DependentUpon>Hitung.cs</DependentUpon>
+    </Compile>
     <Compile Include="koneksi.cs" />
+    <Compile Include="Kriteria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kriteria.Designer.cs">
+      <DependentUpon>Kriteria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Penilaian.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,12 +87,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="query.cs" />
     <Compile Include="rate_pegawai_connected_dataset.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rate_pegawai_connected_dataset.xsd</DependentUpon>
     </Compile>
     <Compile Include="vektor.cs" />
+    <Compile Include="vektor_s_Info.cs" />
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hitung.resx">
+      <DependentUpon>Hitung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kriteria.resx">
+      <DependentUpon>Kriteria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Penilaian.resx">
       <DependentUpon>Penilaian.cs</DependentUpon>
     </EmbeddedResource>

@@ -31,6 +31,21 @@ namespace SPK_WP
             return sum;
         }
 
+        public double sum_vs()
+        {
+            double sum;
+            SqlConnection con = k.connect();
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "select sum(vektor_s) from vektor_s";
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            sum = dr.GetDouble(0);
+            Math.Round(sum, 3);
+            con.Close();
+            return sum;
+        }
+
         public List<double> perbaikan_bobot()
         {
             int sum = sum_bobot();
@@ -45,7 +60,7 @@ namespace SPK_WP
             {
                 double x;
                 string atr = dr.GetString(1);
-                if (atr != "max")
+                if (atr != "MAX")
                     x = (dr.GetDouble(0) / sum) * -1;
                 else
                     x = dr.GetDouble(0) / sum;
@@ -74,9 +89,71 @@ namespace SPK_WP
             {
                 r = r * v_s[i];
             }
+            Math.Round(r, 3);
             return r;
         }
 
-       
+        public List<double> data_vs()
+        {
+            List<double> dvs = new List<double>();
+            SqlConnection sq = k.connect();
+            
+            using(sq)
+            {
+                sq.Open();
+                string cmd = "select vektor_s from vektor_s";
+                SqlCommand sqcom = new SqlCommand(cmd, sq);
+                using(sqcom)
+                {
+                    SqlDataReader sd = sqcom.ExecuteReader();
+                    while(sd.Read())
+                    {
+                        double vs = sd.GetDouble(0);
+                        Math.Round(vs, 3);
+                        dvs.Add(vs);
+                    }
+                }
+                sq.Close();
+            }
+            return dvs;
+
+        }
+
+        public List<double> vektor_v()
+        {
+            List<double> vekv = new List<double>();
+            List<double> dvs = data_vs();
+            double sum = sum_vs();
+
+            for(int i = 0; i < dvs.Count; i++)
+            {
+                double res = dvs[i] / sum;
+                Math.Round(res, 3);
+                vekv.Add(res);
+            }
+            return vekv;
+        }
+
+        public double v_v(int nik)
+        {
+            double v;
+            double sum = sum_vs();
+            SqlConnection sq = k.connect();
+
+            using (sq)
+            {
+                sq.Open();
+                string cmd = String.Format("select vektor_s from vektor_s where nik = {0}", nik);
+                SqlCommand sqcom = new SqlCommand(cmd, sq);
+                using (sqcom)
+                {
+                    SqlDataReader sd = sqcom.ExecuteReader();
+                    sd.Read();
+                    v = Math.Round(sd.GetDouble(0) / sum, 3); 
+                }
+                sq.Close();
+            }
+            return v;
+        }
     }
 }

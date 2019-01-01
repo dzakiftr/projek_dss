@@ -16,7 +16,7 @@ namespace SPK_WP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Penilaian());
+            Application.Run(new Dashboard());
         }
     }
 }
